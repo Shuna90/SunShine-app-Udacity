@@ -9,8 +9,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.NonNull;
-import android.widget.RemoteViews;
 import android.support.v4.app.TaskStackBuilder;
+import android.util.Log;
+import android.widget.RemoteViews;
 
 import com.example.android.sunshine.app.DetailActivity;
 import com.example.android.sunshine.app.MainActivity;
@@ -19,8 +20,11 @@ import com.example.android.sunshine.app.sync.SunshineSyncAdapter;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class DetailWidgetProvider extends AppWidgetProvider {
+    public static final String LOG_TAG = DetailWidgetProvider.class.getSimpleName();
+
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         // Perform this loop procedure for each App Widget that belongs to this provider
+        Log.d(LOG_TAG, " Update");
         for (int appWidgetId : appWidgetIds) {
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_detail);
 
@@ -54,6 +58,7 @@ public class DetailWidgetProvider extends AppWidgetProvider {
     @Override
     public void onReceive(@NonNull Context context, @NonNull Intent intent) {
         super.onReceive(context, intent);
+        Log.d(LOG_TAG, " onReceive");
         if (SunshineSyncAdapter.ACTION_DATA_UPDATED.equals(intent.getAction())) {
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
             int[] appWidgetIds = appWidgetManager.getAppWidgetIds(
@@ -69,6 +74,7 @@ public class DetailWidgetProvider extends AppWidgetProvider {
      */
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     private void setRemoteAdapter(Context context, @NonNull final RemoteViews views) {
+        Log.d(LOG_TAG, " setRemoteAdapter");
         views.setRemoteAdapter(R.id.widget_list,
                 new Intent(context, DetailWidgetRemoteViewsService.class));
     }
@@ -80,6 +86,7 @@ public class DetailWidgetProvider extends AppWidgetProvider {
      */
     @SuppressWarnings("deprecation")
     private void setRemoteAdapterV11(Context context, @NonNull final RemoteViews views) {
+        Log.d(LOG_TAG, " setRemoteAdapterV11");
         views.setRemoteAdapter(0, R.id.widget_list,
                 new Intent(context, DetailWidgetRemoteViewsService.class));
     }

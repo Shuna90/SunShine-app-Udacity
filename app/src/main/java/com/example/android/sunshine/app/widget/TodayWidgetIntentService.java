@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.widget.RemoteViews;
 
@@ -20,6 +21,8 @@ import com.example.android.sunshine.app.Utility;
 import com.example.android.sunshine.app.data.WeatherContract;
 
 public class TodayWidgetIntentService extends IntentService {
+    public static final String LOG_TAG = TodayWidgetIntentService.class.getSimpleName();
+
     private static final String[] FORECAST_COLUMNS = {
             WeatherContract.WeatherEntry.COLUMN_WEATHER_ID,
             WeatherContract.WeatherEntry.COLUMN_SHORT_DESC,
@@ -39,6 +42,7 @@ public class TodayWidgetIntentService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         // Retrieve all of the Today widget ids: these are the widgets we need to update
+        Log.d(LOG_TAG,"onHandleIntent");
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
         int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(this,
                 TodayWidgetProvider.class));
@@ -102,6 +106,7 @@ public class TodayWidgetIntentService extends IntentService {
     }
 
     private int getWidgetWidth(AppWidgetManager appWidgetManager, int appWidgetId) {
+        Log.d(LOG_TAG,"getWidgetWidth");
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
             return getResources().getDimensionPixelSize(R.dimen.widget_today_default_width);
         }
@@ -112,6 +117,7 @@ public class TodayWidgetIntentService extends IntentService {
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     private int getWidgetWidthFromOptions(AppWidgetManager appWidgetManager, int appWidgetId) {
+        Log.d(LOG_TAG,"getWidgetWidthFromOptions");
         Bundle options = appWidgetManager.getAppWidgetOptions(appWidgetId);
         if (options.containsKey(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH)) {
             int minWidthDp = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH);
@@ -125,6 +131,7 @@ public class TodayWidgetIntentService extends IntentService {
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
     private void setRemoteContentDescription(RemoteViews views, String description) {
+        Log.d(LOG_TAG,"setRemoteContentDescription");
         views.setContentDescription(R.id.widget_icon, description);
     }
 }

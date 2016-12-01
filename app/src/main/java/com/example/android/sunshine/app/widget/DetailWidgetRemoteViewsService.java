@@ -41,6 +41,7 @@ public class DetailWidgetRemoteViewsService extends RemoteViewsService {
 
     @Override
     public RemoteViewsFactory onGetViewFactory(Intent intent) {
+        Log.d(LOG_TAG,"RemoteViewsFactory onGetViewFactory");
         return new RemoteViewsFactory() {
             private Cursor data = null;
 
@@ -51,6 +52,7 @@ public class DetailWidgetRemoteViewsService extends RemoteViewsService {
 
             @Override
             public void onDataSetChanged() {
+                Log.d(LOG_TAG,"RemoteViewsFactory onDataSetChanged");
                 if (data != null) {
                     data.close();
                 }
