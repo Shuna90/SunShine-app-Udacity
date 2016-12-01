@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "117484548039",
+    "project_id": "sunshine-c86a6"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:117484548039:android:83b792e26f07bf18",
+        "android_client_info": {
+          "package_name": "com.example.android.sunshine.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDd46HWhU3THpbEeHoNlU5xTSUFVTQUQKI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
