@@ -31,7 +31,7 @@
     <!-- Permissions required to make our UI more friendly -->
     <uses-permission
         android:name="android.permission.ACCESS_NETWORK_STATE" />
-    
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <!-- Permissions required for Google Cloud Messaging -->
@@ -131,7 +131,7 @@
         <receiver
             android:name=".widget.DetailWidgetProvider"
             android:label="@string/title_widget_detail"
-            android:enabled="@bool/widget_detail_enabled" >
+            android:enabled="true" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="com.example.android.sunshine.app.ACTION_DATA_UPDATED" />
@@ -141,7 +141,7 @@
         </receiver>
         <service
             android:name=".widget.DetailWidgetRemoteViewsService"
-            android:enabled="@bool/widget_detail_enabled"
+            android:enabled="true"
             android:exported="false"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
         <service android:name=".widget.TodayWidgetIntentService" />
